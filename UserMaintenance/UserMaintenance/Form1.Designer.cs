@@ -62,6 +62,7 @@
             this.Addbutton.TabIndex = 2;
             this.Addbutton.Text = "button1";
             this.Addbutton.UseVisualStyleBackColor = true;
+            this.Addbutton.Click += new System.EventHandler(this.Addbutton_Click);
             // 
             // textBox1
             // 

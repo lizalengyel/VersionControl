@@ -40,7 +40,7 @@
             // LastNamelabel
             // 
             this.LastNamelabel.AutoSize = true;
-            this.LastNamelabel.Location = new System.Drawing.Point(500, 52);
+            this.LastNamelabel.Location = new System.Drawing.Point(504, 90);
             this.LastNamelabel.Name = "LastNamelabel";
             this.LastNamelabel.Size = new System.Drawing.Size(60, 20);
             this.LastNamelabel.TabIndex = 0;
@@ -49,7 +49,7 @@
             // FirstNamelabel
             // 
             this.FirstNamelabel.AutoSize = true;
-            this.FirstNamelabel.Location = new System.Drawing.Point(504, 90);
+            this.FirstNamelabel.Location = new System.Drawing.Point(504, 56);
             this.FirstNamelabel.Name = "FirstNamelabel";
             this.FirstNamelabel.Size = new System.Drawing.Size(51, 20);
             this.FirstNamelabel.TabIndex = 1;

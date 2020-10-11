@@ -72,7 +72,14 @@ namespace ANGGKT_5
         //private void button1_Click(object sender, EventArgs e)
         //{
         //    SaveFileDialog sfd = new SaveFileDialog();
-        //    sfd.FileName=""
+        //    sfd.FileName = "file.txt";
+        //    sfd.Filter = "Text File | *.txt";
+        //    if (sfd.ShowDialog()== DialogResult.OK)
+        //    {
+
+
+        //    }
+
         //}
     }
 }

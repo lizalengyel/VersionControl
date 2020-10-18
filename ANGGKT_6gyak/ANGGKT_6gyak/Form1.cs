@@ -21,10 +21,15 @@ namespace ANGGKT_6gyak
         public Form1()
         {
             InitializeComponent();
-            dataGridView1.DataSource = Rates;
+            GetExchangeRates();
             xmlfunction();
-            chart();
+            chart(); 
 
+        }
+
+
+        public void GetExchangeRates()
+        {
             var mnbService = new MNBArfolyamServiceSoapClient();
             var request = new GetExchangeRatesRequestBody()
             {
@@ -35,7 +40,6 @@ namespace ANGGKT_6gyak
 
             var response = mnbService.GetExchangeRates(request);
             var result = response.GetExchangeRatesResult;
-      
 
         }
 
@@ -88,6 +92,11 @@ namespace ANGGKT_6gyak
 
         }
 
+        private void RefreshData()
+        {
+            dataGridView1.DataSource = Rates;
+            BindingList<RateDate>.Clear;
+        }
 
     }
 }

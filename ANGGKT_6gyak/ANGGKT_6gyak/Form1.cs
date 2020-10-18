@@ -17,13 +17,20 @@ namespace ANGGKT_6gyak
     public partial class Form1 : Form
     {
         BindingList<RateDate> Rates = new BindingList<RateDate>();
+        BindingList<string> Currencies = new BindingList<string>();
 
         public Form1()
         {
             InitializeComponent();
-            GetExchangeRates();
-            xmlfunction();
-            chart(); 
+            GetCurrencies();
+            RefreshData();
+
+            comboBox1.DataSource = Currenices;
+
+        }
+
+        private void GetCurrencies()
+        {
 
         }
 
@@ -46,7 +53,7 @@ namespace ANGGKT_6gyak
         public void xmlfunction()
         {
             var xml = new XmlDocument();
-            xml.LoadXml(result);
+           // xml.LoadXml(result);
 
             foreach (XmlElement element in xml.DocumentElement)
             {
@@ -94,9 +101,33 @@ namespace ANGGKT_6gyak
 
         private void RefreshData()
         {
+            Rates.Clear();
+            GetExchangeRates();
+            xmlfunction();
+            chart();
+
             dataGridView1.DataSource = Rates;
-            BindingList<RateDate>.Clear;
+
         }
 
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void chartRateData_Click(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
     }
 }

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
 
 namespace ANGGKT_6gyak
@@ -16,6 +17,27 @@ namespace ANGGKT_6gyak
     public partial class Form1 : Form
     {
         BindingList<RateDate> Rates = new BindingList<RateDate>();
+
+        public Form1()
+        {
+            InitializeComponent();
+            dataGridView1.DataSource = Rates;
+            xmlfunction();
+            chart();
+
+            var mnbService = new MNBArfolyamServiceSoapClient();
+            var request = new GetExchangeRatesRequestBody()
+            {
+                currencyNames = "EUR",
+                startDate = "2020-01-01",
+                endDate = "2020-06-30"
+            };
+
+            var response = mnbService.GetExchangeRates(request);
+            var result = response.GetExchangeRatesResult;
+      
+
+        }
 
         public void xmlfunction()
         {
@@ -45,28 +67,27 @@ namespace ANGGKT_6gyak
         }
 
 
-
-        public Form1()
+        public void chart()
         {
-            InitializeComponent();
-            dataGridView1.DataSource = Rates;
+            chartRateData.DataSource = Rates;
 
-            var mnbService = new MNBArfolyamServiceSoapClient();
-            var request = new GetExchangeRatesRequestBody()
-            {
-                currencyNames = "EUR",
-                startDate = "2020-01-01",
-                endDate = "2020-06-30"
-            };
+            var series = chartRateData.Series[0];
+            series.ChartType = SeriesChartType.Line;
+            series.XValueMember = "Date";
+            series.YValueMembers = "Value";
+            series.BorderWidth = 2;
 
-            var response = mnbService.GetExchangeRates(request);
-            var result = response.GetExchangeRatesResult;
-            xmlfunction();
+            var legend = chartRateData.Legends[0];
+            legend.Enabled = false;
 
-           
+            var chartArea = chartRateData.ChartAreas[0];
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisY.MajorGrid.Enabled = false;
+            chartArea.AxisY.IsStartedFromZero = false;
+
+
         }
 
-       
 
     }
 }

@@ -42,7 +42,7 @@ namespace ANGGKT_week07
             return population;
         }
 
-        public List<> GetPopulation(string csvpath)
+        public List<Person> GetBirthProbabilities(string csvpath)
         {
             List<Person> population = new List<Person>();
 
